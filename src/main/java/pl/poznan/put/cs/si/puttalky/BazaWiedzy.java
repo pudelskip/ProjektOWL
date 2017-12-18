@@ -83,9 +83,7 @@ public class BazaWiedzy {
 		return result;
 	}
 
-	public void succ(){
-		System.out.print("SUCC");
-	}
+
     public String[] filtrujDodatki(String s){
 		String[] dodatki = new HashSet<String>(Arrays.asList(s.split(";"))).toArray(new String[0]);
 		return dodatki;
@@ -125,6 +123,9 @@ public class BazaWiedzy {
     }
 
     public String iriNaNazwe(String iri){
+		if(iri.contains("not")){
+			return "bez";
+		}
 		OWLClass dodatek = manager.getOWLDataFactory().getOWLClass(IRI.create(iri));
     	return dodatek.getIRI().getFragment();
 	}

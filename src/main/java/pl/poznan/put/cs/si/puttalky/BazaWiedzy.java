@@ -68,7 +68,7 @@ public class BazaWiedzy {
     		if ( s.length()> 3 && klasa.getIRI().getFragment().toLowerCase().contains(s.substring(0,s.length()-2).toLowerCase())){
     			result.add(klasa.getIRI().toString());
     		}
-   			else if ( s.length()> 2 &&klasa.getIRI().getFragment().toLowerCase().contains(s.substring(0,s.length()).toLowerCase())){
+   			else if ( s.length()> 2 && klasa.getIRI().getFragment().toLowerCase().contains(s.substring(0,s.length()).toLowerCase())){
 					result.add(klasa.getIRI().toString());
     		}
     	}
@@ -78,7 +78,7 @@ public class BazaWiedzy {
 	public Set<String> dopasujPizze(String s){
 		Set<String> result = new HashSet<String>();
 		for (OWLClass klasa : listaIstniejacychPizz){
-			if ( s.length()>2 &&(klasa.toString().toLowerCase().contains(s.substring(0,s.length()-2).toLowerCase())) && !s.contains("pizza")){
+			if ( s.length()>2 &&(klasa.getIRI().getFragment().toLowerCase().contains(s.substring(0,s.length()-2).toLowerCase())) && !s.contains("pizza")){
 				result.add(klasa.getIRI().toString());
 			}
 		}

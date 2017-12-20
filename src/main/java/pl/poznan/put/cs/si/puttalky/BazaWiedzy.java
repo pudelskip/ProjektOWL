@@ -57,7 +57,7 @@ public class BazaWiedzy {
     
     public Set<String> dopasujDodatek(String s){
     	Set<String> result = new HashSet<String>();
-    	if(s.toLowerCase().contains("bez")) {
+    	if(s.toLowerCase().equals("bez")) {
 			result.add("not");
 			return result;
 		}
@@ -99,7 +99,7 @@ public class BazaWiedzy {
 
 		String[] dodatki = new HashSet<String>(Arrays.asList(s.split(";"))).toArray(new String[0]);
     	for(String iri : dodatki) {
-    		if(iri.contains("not")){
+    		if(iri.equals("not")){
     			compliment=true;
     			continue;
 			}
@@ -117,13 +117,14 @@ public class BazaWiedzy {
     	
 		for (org.semanticweb.owlapi.reasoner.Node<OWLClass> klasa: silnik.getSubClasses(pozadanaPizza, false)) {
 			pizze.add(klasa.getEntities().iterator().next().asOWLClass().getIRI().getFragment());
+
 		}
 	
 		return pizze;
     }
 
     public String iriNaNazwe(String iri){
-		if(iri.contains("not")){
+		if(iri.equals("not")){
 			return "bez";
 		}
 		OWLClass dodatek = manager.getOWLDataFactory().getOWLClass(IRI.create(iri));
@@ -140,7 +141,7 @@ public class BazaWiedzy {
 			System.out.println("klasa:"+klasa.toString());
 		}
 		for (OWLClass d:  baza.listaDodatkow){
-			System.out.println("dodatek: "+d.toString());
+		//	System.out.println("dodatek: "+d.toString());
 		}
 
 	}

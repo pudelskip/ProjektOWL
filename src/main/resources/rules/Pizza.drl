@@ -164,7 +164,7 @@ rule "Polecana pizza"
                 for(String iri : baza.filtrujDodatki($dodatek.getWartosc())) {
                                             dodatki=dodatki+" "+baza.iriNaNazwe(iri);
                                         }
-                System.out.println("Polecam pizzę spacjalną z dodatkami "+ dodatki);
+                System.out.println("Polecam pizzę spacjalną z dodatkami: "+ dodatki);
 			}
 	    }
 

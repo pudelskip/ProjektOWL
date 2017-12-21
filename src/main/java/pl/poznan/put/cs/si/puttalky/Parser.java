@@ -50,7 +50,7 @@ public class Parser {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		setSlowaKluczowe(parsuj(buffer.toString()));
+		setSlowaKluczowe(parsuj(buffer));
 	}
 
 	
@@ -62,21 +62,12 @@ public class Parser {
 		PolishStemmer s = new PolishStemmer();
 		
 		for (String slowo : slowa){
-			String token = new String("");
+			String token;
 			if (stem(s, slowo).length>1)
 				token = stem(s, slowo)[0];
 			else
 				token = slowo.toLowerCase();
-			/*
-			if(slowo == "bez")
-				przeczenie=true;
-
-			if(przeczenie){
-				tokeny.add("~"+token);
-				przeczenie=false;
-			}
-			else*/
-				tokeny.add(token);
+			tokeny.add(token);
 		}
 		
 	    return tokeny.toArray(new String[tokeny.size()]);

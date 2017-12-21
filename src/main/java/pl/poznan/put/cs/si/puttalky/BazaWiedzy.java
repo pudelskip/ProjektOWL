@@ -112,15 +112,15 @@ public class BazaWiedzy {
 				OWLObjectComplementOf ow = manager.getOWLDataFactory().getOWLObjectComplementOf(wyrazenie);
 				ograniczeniaEgzystencjalne.add(ow);
 				compliment=false;
-			}else
-			ograniczeniaEgzystencjalne.add(wyrazenie);
+			}
+			else
+			    ograniczeniaEgzystencjalne.add(wyrazenie);
 
 		}
     	OWLClassExpression pozadanaPizza = manager.getOWLDataFactory().getOWLObjectIntersectionOf(ograniczeniaEgzystencjalne);
     	
 		for (org.semanticweb.owlapi.reasoner.Node<OWLClass> klasa: silnik.getSubClasses(pozadanaPizza, false)) {
 			pizze.add(klasa.getEntities().iterator().next().asOWLClass().getIRI().getFragment());
-
 		}
 	
 		return pizze;
@@ -143,10 +143,5 @@ public class BazaWiedzy {
 		for (org.semanticweb.owlapi.reasoner.Node<OWLClass> klasa: baza.silnik.getSubClasses(mieso, true)) {
 			System.out.println("klasa:"+klasa.toString());
 		}
-		for (OWLClass d:  baza.listaDodatkow){
-		//	System.out.println("dodatek: "+d.toString());
-		}
-
 	}
-
 }

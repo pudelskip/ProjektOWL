@@ -32,10 +32,11 @@ public class PuttalkyMain {
             Parser parser = new Parser();
             BazaWiedzy baza = new BazaWiedzy(); 
             baza.inicjalizuj();
-            //w = baza.dopasujPizze("poproszę wegetariańską");
+
             Fakt fakt = new Fakt();
             fakt.setNazwa("");
             fakt.setWartosc("-1");
+
             kSession.insert(fakt);
             kSession.insert(zamowienie);
             kSession.insert(ciasto);

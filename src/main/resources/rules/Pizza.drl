@@ -44,9 +44,7 @@ rule "Pytaj istniejaca pizze"
 		        insert(new Fakt("gotowa_pizza", slowo.toLowerCase()));
 
 		}
-
-		//@TODO	brak dopasowania
-
+		//
 end
 
 
@@ -55,7 +53,7 @@ rule "Podaj istniejaca pizze"
 	salience 3
 
 	when
-		Fakt(nazwa == "gotowa_pizza", wartosc=="tak" ||  wartosc=="owszem"||  wartosc=="oczywiście"||  wartosc=="poproszę") &&
+		fakt : Fakt(nazwa == "gotowa_pizza", wartosc=="tak" ||  wartosc=="owszem"||  wartosc=="oczywiście"||  wartosc=="poproszę") &&
 		not Fakt(nazwa == "pizza_propozycja")
 		pizza : Pizza()
 		parser : Parser()
@@ -66,15 +64,20 @@ rule "Podaj istniejaca pizze"
 		  pizza.zadajPytanie();
 		  parser.przetworzOdpowiedz();
 
-        insert(new Fakt("gotowa_pizza_wypisz", ""));
 
+        boolean foundMatch = false;
 		for (String slowo : parser.getSlowaKluczowe()){
 			for (String uriKlasy : baza.dopasujPizze(slowo)) {
 		        insert(new Fakt("pizza_propozycja", uriKlasy));
+		        if(!foundMatch){
+                    insert(new Fakt("gotowa_pizza_wypisz", ""));
+                    foundMatch = true;
+		        }
 		    }
 		}
-
-		//@TODO	brak dopasowania
+		if(!foundMatch)
+		    System.out.print("Brak wzkazanej pizzy\n");
+        update(fakt);
 
 end
 
@@ -100,9 +103,12 @@ rule "Podaj dodatki"
 
 		    } 
 		}
-		insert(new Fakt("dodatek", dodatki));
-		    		
-		//@TODO	brak dopasowania
+	    if(!dodatki.equals("")){
+            insert(new Fakt("dodatek", dodatki));
+
+		} else{
+		    System.out.println("Brak dodatków");
+		}
 		update(dodatek);
 end
 
@@ -126,7 +132,7 @@ rule "Podaj rodzaj ciasta"
 			}
 		}
 					
-		//@TODO	brak dopasowania
+		//
 		
 		update(ciasto);
 end
@@ -158,6 +164,7 @@ rule "Polecana pizza"
 		else {
 		    if($dodatek.getWartosc().equals("")){
 		         System.out.println("Brak dodatków");
+		         retract($dodatek);
 		    }else{
                 insert(new Fakt("pizza_propozycja", "Pizza Scpajcalna"));
                 String dodatki ="";

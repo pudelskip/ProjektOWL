@@ -168,6 +168,7 @@ rule "Polecana pizza"
 		    }else{
                 insert(new Fakt("pizza_propozycja", "Pizza Scpajcalna"));
                 String dodatki ="";
+
                 for(String iri : baza.filtrujDodatki($dodatek.getWartosc())) {
                                             dodatki=dodatki+" "+baza.iriNaNazwe(iri);
                                         }

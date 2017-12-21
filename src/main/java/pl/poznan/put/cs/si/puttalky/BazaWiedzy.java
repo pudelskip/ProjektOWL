@@ -3,6 +3,7 @@ package pl.poznan.put.cs.si.puttalky;
 import java.io.InputStream;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 import org.semanticweb.HermiT.Reasoner;
@@ -88,7 +89,7 @@ public class BazaWiedzy {
 
 
     public String[] filtrujDodatki(String s){
-		String[] dodatki = new HashSet<String>(Arrays.asList(s.split(";"))).toArray(new String[0]);
+		String[] dodatki = new LinkedHashSet<String>(Arrays.asList(s.split(";"))).toArray(new String[0]);
 		return dodatki;
 
 	}

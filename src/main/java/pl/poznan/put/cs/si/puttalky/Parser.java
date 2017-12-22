@@ -63,6 +63,7 @@ public class Parser {
 		
 		for (String slowo : slowa){
 			String token;
+			slowo = slowo.replaceAll("[^a-zA-Z0-9]", "");
 			if (stem(s, slowo).length>1)
 				token = stem(s, slowo)[0];
 			else

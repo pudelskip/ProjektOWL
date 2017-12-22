@@ -127,7 +127,7 @@ rule "Podaj rodzaj ciasta"
 		for (String slowo : parser.getSlowaKluczowe()){
 			if (slowo.equals("cienki")){
 		       insert(new Fakt("rodzaj_ciasta", "cienkie"));
-			} else if (slowo.equals("gruby")) {
+			} else if (slowo.equals("grube")) {
 		       insert(new Fakt("rodzaj_ciasta", "grube"));
 			}
 		}
